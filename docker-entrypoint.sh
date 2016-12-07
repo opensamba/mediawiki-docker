@@ -111,7 +111,7 @@ EOPHP
 
 cd /var/www/html
 # FIXME: Keep php files out of the doc root.
-ln -s /usr/src/mediawiki/* .
+ln -sf /usr/src/mediawiki/* .
 
 : ${MEDIAWIKI_SHARED:=/data}
 if [ -d "$MEDIAWIKI_SHARED" ]; then
@@ -131,7 +131,7 @@ if [ -d "$MEDIAWIKI_SHARED" ]; then
 
 	# If an extensions folder exists inside the shared directory, as long as
 	# /var/www/html/extensions is not already a symbolic link, then replace it
-	if [ -d "$MEDIAWIKI_SHARED/extensions" -a ! -h /var/www/html/extensions ]; then
+	if [ -d "$MEDIAWIKI_SHARED/extensions" ]; then
 		echo >&2 "Found 'extensions' folder in data volume, creating symbolic link."
 		rm -rf /var/www/html/extensions
 		ln -s "$MEDIAWIKI_SHARED/extensions" /var/www/html/extensions
